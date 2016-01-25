@@ -105,7 +105,7 @@ public class CityConnect {
 	}
 
 	private static void runprog() {
-		System.out.print("Enter command:");
+		System.out.print("Enter command:");   //showToUser("Enter command:");???
 		String command = scanner.nextLine();
 		String userCommand = command;
 		String feedback = executeCommand(userCommand);
@@ -199,8 +199,8 @@ public class CityConnect {
 			return String.format(MESSAGE_INVALID_FORMAT, userCommand);
 		}
 
-		String newStartLocation = parameters[PARAM_POSITION_START_LOCATION];
-		String newEndLocation = parameters[PARAM_POSITION_END_LOCATION];
+		String newStartLocation = getStartPoint(parameters);
+		String newEndLocation = getEndPoint(parameters);
 
 		int position = getPositionOfExistingRoute(newStartLocation, newEndLocation);
 
@@ -254,9 +254,9 @@ public class CityConnect {
 			return String.format(MESSAGE_INVALID_FORMAT, userCommand);
 		}
 
-		String newStartLocation = parameters[PARAM_POSITION_START_LOCATION];
-		String newEndLocation = parameters[PARAM_POSITION_END_LOCATION];
-		String distance = parameters[PARAM_POSITION_DISTANCE];
+		String newStartLocation = getStartPoint(parameters);
+		String newEndLocation = getEndPoint(parameters);
+		String distance = getDistance(parameters);
 
 		if (!isPositiveNonZeroInt(distance)){
 			return String.format(MESSAGE_INVALID_FORMAT, userCommand);
@@ -273,6 +273,18 @@ public class CityConnect {
 
 		return String.format(MESSAGE_ADDED, newStartLocation, newEndLocation,
 				distance);
+	}
+
+	private static String getDistance(String[] parameters) {
+		return parameters[PARAM_POSITION_DISTANCE];
+	}
+
+	private static String getEndPoint(String[] parameters) {
+		return parameters[PARAM_POSITION_END_LOCATION];
+	}
+
+	private static String getStartPoint(String[] parameters) {
+		return parameters[PARAM_POSITION_START_LOCATION];
 	}
 
 	private static void addRouteAtPosition(String newStartLocation,
