@@ -196,7 +196,7 @@ public class CityConnect {
 		String[] parameters = splitParameters(removeFirstWord(userCommand));
 
 		if (parameters.length < PARAM_SIZE_FOR_GET_DISTANCE) {
-			return String.format(MESSAGE_INVALID_FORMAT, userCommand);
+			return String.format(MESSAGE_INVALID_FORMAT, userCommand);  
 		}
 
 		String newStartLocation = getStartPoint(parameters);
